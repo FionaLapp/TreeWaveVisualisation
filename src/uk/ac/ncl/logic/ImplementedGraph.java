@@ -1,5 +1,7 @@
 package uk.ac.ncl.logic;
 
+import java.util.Arrays;
+
 public class ImplementedGraph {
 	private int [][] connectionMatrix;
 	private int[][] adjacencyMatrix;
@@ -30,8 +32,10 @@ public class ImplementedGraph {
 
 	/**
 	 * creates an adjacency matrix using the connection matrix field. The adjacency matrix is a symmetrical matrix with each cell being 1 if there is a connection, 0 if there isn't.
+	 * @throws IllegalArgumentException if the connection matrix is not symmetrical or the graph is not a tree
+	 * 
 	 */
-	private void createAdjacencyMatrix(){
+	private void createAdjacencyMatrix() throws IllegalArgumentException{
 		adjacencyMatrix=new int[size][size];
 		for (int row=0; row<size; row++) {
 			for (int col=0; col<=row; col++) {
@@ -57,6 +61,17 @@ public class ImplementedGraph {
 				}
 			}
 			}
+		int connectionSum=0;
+		for (int[] row : adjacencyMatrix) {
+			int rowSum=Arrays.stream(row).sum();
+			if (rowSum==0) {
+				throw new IllegalArgumentException("Not a tree, there are disconnected nodes");
+			}
+			connectionSum=connectionSum+rowSum;
+		}
+		if (connectionSum!=2*(size-1)) {
+			throw new IllegalArgumentException("Not a tree, too many edges in the graph");
+		}
 		
 		}
 	

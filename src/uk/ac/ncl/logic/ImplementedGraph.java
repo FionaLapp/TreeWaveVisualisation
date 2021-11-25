@@ -2,7 +2,7 @@ package uk.ac.ncl.logic;
 
 import java.util.Arrays;
 
-public class ImplementedGraph {
+public class ImplementedGraph implements Graph{
 	private int [][] connectionMatrix;
 	private int[][] adjacencyMatrix;
 	private int size;
@@ -80,6 +80,7 @@ public class ImplementedGraph {
 	 * nodes in the graph
 	 * @return the nodes an array containing all node objects of the graph
 	 */
+	@Override
 	public Node[] getNodes() {
 		return nodes;
 	}
@@ -89,6 +90,7 @@ public class ImplementedGraph {
 	 * size of the graph
 	 * @return the size the size of the graph
 	 */
+	@Override
 	public int getSize() {
 		return size;
 	}
@@ -99,6 +101,7 @@ public class ImplementedGraph {
 	 * <p>a matrix containing the length of each connection (rows represent senders, columns recipients)</p>
 	 * @return the connectionMatrix
 	 */
+	@Override
 	public int[][] getConnectionMatrix() {
 		return connectionMatrix;
 	}
@@ -108,6 +111,7 @@ public class ImplementedGraph {
 	 * <p>each cell contains a 0 if there is no connection, a 1 if there is a connection (by default symmetrical). Rows represent senders, columns recipients.</p>
 	 * @return the adjacencyMatrix
 	 */
+	@Override
 	public int[][] getAdjacencyMatrix() {
 		return adjacencyMatrix;
 	}

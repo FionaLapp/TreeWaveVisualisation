@@ -9,7 +9,7 @@ public class TreeWave {
 	private int timeCounter;
 	private Node decisionMaker;
 	private int timeOut;
-	public TreeWave(ImplementedGraph graph) throws Exception {
+	public TreeWave(Graph graph) throws Exception {
 		timeCounter=0;
 		messagesInTransit= new LinkedList<Message>();
 		timeOut=10;

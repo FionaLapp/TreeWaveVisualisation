@@ -1,5 +1,7 @@
 package uk.ac.ncl.logic;
 
+import java.util.Objects;
+
 /**
  * An interface for messages. They have a sender id, receiver id, and a field for the remaining time of transit.
  * @author Fiona Lapp
@@ -7,12 +9,12 @@ package uk.ac.ncl.logic;
  */
 public interface Message {
 	/**
-	 * id of the node that sent the message
+	 * the node that sent the message
 	 * @return the sender id
 	 */
 	public Node getSender();
 	/**
-	 * id of the node that will receive the message
+	 * the node that will receive the message
 	 * @return the receiver id
 	 */
 	public Node getRecipient();
@@ -29,4 +31,22 @@ public interface Message {
 	 */
 	public void decreaseTimeLeft();// by one
 	
+	/**
+	 * The string representation of a message. This is of the form: "message from [sender] to [recipient] has [timeLeft] time units left until arrival"
+	 * @return String representation of the message
+	 */
+	@Override
+	public String toString() ;
+
+	/**
+	 * hashcode corresponding to equals method
+	 * @see equals
+	 */
+	@Override
+	public int hashCode() ;
+	/**
+	 * a message is equal to another message if they have the same sender, recipient and time left
+	 */
+	@Override
+	public boolean equals(Object obj);
 }

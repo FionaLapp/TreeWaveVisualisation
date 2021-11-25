@@ -1,6 +1,7 @@
 package uk.ac.ncl.logic;
 
 import java.util.LinkedList;
+import java.util.Objects;
 
 
 /**
@@ -82,4 +83,21 @@ public interface Node {
 	 * @see hasSent(Node)
 	 */
 	boolean hasSent(int nodeId);
+	/**
+	 * The string representation of a node. This is of the form: "node # [node id]"
+	 * @return String representation of the node
+	 */
+	@Override
+	public String toString();
+	/**
+	 * hashcode corresponding to equals method
+	 * @see equals
+	 */
+	@Override
+	public int hashCode();
+	/**
+	 * a node is equal to another node if they have the same id
+	 */
+	@Override
+	public boolean equals(Object obj);
 }

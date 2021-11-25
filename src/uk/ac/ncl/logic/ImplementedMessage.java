@@ -2,6 +2,11 @@ package uk.ac.ncl.logic;
 
 import java.util.Objects;
 
+/**
+ * Implements the {@link Message} interface.
+ * @author Fiona Lapp
+ *
+ */
 public class ImplementedMessage implements Message {
 	
 	private final Node sender;

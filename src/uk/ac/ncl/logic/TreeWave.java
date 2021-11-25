@@ -44,7 +44,7 @@ public class TreeWave {
 					//System.out.println(node.getReceived());
 				}
 			if (node.hasSilentNeighbour()) {
-				System.out.println("node "+node.getPosition()+ " has silent neighbour:" + node.getSilentNeighbour());
+				System.out.println("node "+node.getId()+ " has silent neighbour:" + node.getSilentNeighbour());
 				
 				
 				if (node.getReceived()[node.getIndexForReceived(node.getSilentNeighbour())]==true) {
@@ -55,7 +55,7 @@ public class TreeWave {
 				if (!node.hasSent(node.getSilentNeighbour())) {
 				Node sender= node;
 				Node receiver= graph.getNodes()[node.getSilentNeighbour()];
-					int timeForMessage= graph.getConnectionMatrix()[sender.getPosition()][receiver.getPosition()];
+					int timeForMessage= graph.getConnectionMatrix()[sender.getId()][receiver.getId()];
 					sendMessage(sender,receiver, timeForMessage);
 				}
 				

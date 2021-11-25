@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public interface Node {
 	/**
-	 * @return neighbours - an array of the position numbers of the neighbours of this node
+	 * @return neighbours - an array of the id numbers of the neighbours of this node
 	 */
 	int[] getNeighbours();
 	/**
@@ -24,13 +24,13 @@ public interface Node {
 	 */
 	boolean hasSilentNeighbour();
 	/**
-	 * Position of the node in the graph. This should be set to a uniquely identifying integer number which will also be used for equals and hashcode.
-	 * @return the position number of the node
+	 * Id of the node in the graph. This should be set to a uniquely identifying integer number which will also be used for equals and hashcode.
+	 * @return the id number of the node
 	 */
-	int getPosition();
+	int getId();
 	/**
-	 * The silent neighbour position
-	 * @return the position number of the silent neighbour. If the silent neighbour has not been found yet, this is null.
+	 * The silent neighbour id
+	 * @return the id number of the silent neighbour. If the silent neighbour has not been found yet, this is null.
 	 */
 	Integer getSilentNeighbour();//returns null if there is none yet
 	/**
@@ -52,10 +52,10 @@ public interface Node {
 	Message popFromBuffer();
 	/**
 	 * Helper function to convert a neighbour's id to their index in the "received" and "sent" array of this specific node
-	 * @param neighbourPosition the neighbour's id
+	 * @param neighbourId the neighbour's id
 	 * @return the index of that neighbour's value in this node's "received" and "sent" array
 	 */
-	int getIndexForReceived(int neighbourPosition);
+	int getIndexForReceived(int neighbourId);
 	/**
 	 * Check if this node has sent a message to the input node yet
 	 * @param node the input node
@@ -70,9 +70,9 @@ public interface Node {
 	void setSent(Node receiver);
 	/**
 	 * Check if this node has sent a message to the input node yet. Overloaded function with receiver's id instead of node object.
-	 * @param nodePosition the receiver's id
+	 * @param nodeId the receiver's id
 	 * @return true if a message has already been sent, false otherwise
 	 * @see hasSent(Node)
 	 */
-	boolean hasSent(int nodePosition);
+	boolean hasSent(int nodeId);
 }

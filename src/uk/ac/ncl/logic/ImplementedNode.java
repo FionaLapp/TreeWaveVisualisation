@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Objects;
 
 public class ImplementedNode implements Node {
-	private int position;
+	private int id;
 	private int[] neighbours;
 	private boolean[] received;
 	private boolean hasSilentNeighbour;
@@ -14,18 +14,18 @@ public class ImplementedNode implements Node {
 	private LinkedList<Message> buffer;
 	private boolean[] sent;
 	
-	public ImplementedNode(int position, int[][] adjacencyMatrix) {
-		this.position= position;
+	public ImplementedNode(int id, int[][] adjacencyMatrix) {
+		this.id= id;
 		this.silentNeighbour=null;
 		this.buffer=new LinkedList<Message>();
-		numberOfNeighbours= Arrays.stream(adjacencyMatrix[position]).sum();
-		int graphSize=adjacencyMatrix[position].length;
+		numberOfNeighbours= Arrays.stream(adjacencyMatrix[id]).sum();
+		int graphSize=adjacencyMatrix[id].length;
 		this.neighbours=new int[numberOfNeighbours]; // an empty array of the correct size
 		
 		//setting the neighbour array
 		int neighbourCounter=0;
 		for(int allNodesCounter=0; allNodesCounter<graphSize; allNodesCounter++) {
-			if (adjacencyMatrix[position][allNodesCounter]==1) {
+			if (adjacencyMatrix[id][allNodesCounter]==1) {
 				neighbours[neighbourCounter]=allNodesCounter;
 				neighbourCounter++;
 			}
@@ -38,8 +38,8 @@ public class ImplementedNode implements Node {
 		// TODO Auto-generated constructor stub
 	}
 	@Override
-	public int getPosition() {
-		return this.position;
+	public int getId() {
+		return this.id;
 	}
 	
 	@Override
@@ -61,7 +61,7 @@ public class ImplementedNode implements Node {
 	@Override
 	public void receiveMessage(Message message) {
 		Node neighbour= message.getSender();
-		int neighbourIndex=getIndexForReceived(neighbour.getPosition());
+		int neighbourIndex=getIndexForReceived(neighbour.getId());
 		received[neighbourIndex]=true;
 		
 		buffer.remove(message);
@@ -75,16 +75,16 @@ public class ImplementedNode implements Node {
 	
 	@Override 
 	public void setSent(Node receiver) {
-		int receiverIndex= this.getIndexForReceived(receiver.getPosition());
+		int receiverIndex= this.getIndexForReceived(receiver.getId());
 		sent[receiverIndex]=true;
 	}
 	
 
 		
 	@Override
-	public int getIndexForReceived(int neighbourPosition) {
-		int neighbourIndex= Arrays.binarySearch(neighbours, neighbourPosition);
-		if (neighbours[neighbourIndex]==neighbourPosition) {
+	public int getIndexForReceived(int neighbourId) {
+		int neighbourIndex= Arrays.binarySearch(neighbours, neighbourId);
+		if (neighbours[neighbourIndex]==neighbourId) {
 			return neighbourIndex;
 		}
 		else {
@@ -130,7 +130,7 @@ public class ImplementedNode implements Node {
 	}
 	
 	@Override
-	public Message removeFromBuffer() {
+	public Message popFromBuffer() {
 		return buffer.pop();
 		
 	}
@@ -138,23 +138,23 @@ public class ImplementedNode implements Node {
 	
 	@Override 
 	public boolean hasSent(Node node) {
-		int nodeIndex= this.getIndexForReceived(node.getPosition());
+		int nodeIndex= this.getIndexForReceived(node.getId());
 		return sent[nodeIndex];
 	}
 	
 	@Override 
-	public boolean hasSent(int nodePosition) {
-		int nodeIndex= this.getIndexForReceived(nodePosition);
+	public boolean hasSent(int nodeId) {
+		int nodeIndex= this.getIndexForReceived(nodeId);
 		return sent[nodeIndex];
 	}
 	
 	@Override
 	public String toString() {
-		return "Node  #" + position;
+		return "Node  #" + id;
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(position);
+		return Objects.hash(id);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -163,7 +163,7 @@ public class ImplementedNode implements Node {
 		if (!(obj instanceof ImplementedNode))
 			return false;
 		ImplementedNode other = (ImplementedNode) obj;
-		return position == other.position;
+		return id == other.id;
 	}
 		
 }

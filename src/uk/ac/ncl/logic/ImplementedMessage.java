@@ -5,33 +5,53 @@ import java.util.Objects;
 public class ImplementedMessage implements Message {
 	
 	private final Node sender;
-	private final Node receiver;
+	private final Node recipient;
 	private int timeLeft;
 	
-	public ImplementedMessage(Node sender,Node receiver, int timeLeft) {
+	/**
+	 * @param sender the node sending the message
+	 * @param recipient the node receiving the message
+	 * @param timeLeft the time that the node will still remain in transit
+	 */
+	public ImplementedMessage(Node sender,Node recipient, int timeLeft) {
 		this.sender=sender;
-		this.receiver= receiver;
+		this.recipient= recipient;
 		this.timeLeft=timeLeft;
 	}
 
+	/**
+	 * the node that sent the message
+	 * @return the sender id
+	 */
 	@Override
 	public Node getSender() {
 		return sender;
 	}
 
 
-
+	/**
+	 * the node that will receive the message
+	 * @return the recipient id
+	 */
 	@Override
 	public Node getRecipient() {
-		return receiver;
+		return recipient;
 	}
-
+	
+	/**
+	 * The transit time that is left for this message
+	 * @return how long the message will still be in transit
+	 */
 	@Override
 	public int getTimeLeft() {
 		return timeLeft;
 	}
 
-	
+	/**
+	 * decrease the remaining transit time by 1. 
+	 * <p>This method should be called on every message at every time step of the algorithm.</p>
+	 * <p>If the time left is already 0, nothing will happen</p>
+	 */
 	@Override
 	public void decreaseTimeLeft() { //by one
 		if (timeLeft>0)
@@ -39,16 +59,27 @@ public class ImplementedMessage implements Message {
 		// if the message has already arrived in the buffer, nothing happens
 	
 	}
+	
+	/**
+	 * The string representation of a message. This is of the form: "message from [sender] to [recipient] has [timeLeft] time units left until arrival"
+	 * @return String representation of the message
+	 */
 	@Override
 	public String toString() {
-		return "ImplementedMessage from " + sender + " to " + receiver + " has " + timeLeft + " time units left until arrival";
+		return "message from " + sender + " to " + recipient + " has " + timeLeft + " time units left until arrival";
 	}
 
+	/**
+	 * hashcode corresponding to equals method
+	 * @see equals
+	 */
 	@Override
 	public int hashCode() {
-		return Objects.hash(receiver, sender, timeLeft);
+		return Objects.hash(recipient, sender, timeLeft);
 	}
-
+	/**
+	 * a message is equal to another message if they have the same sender, recipient and time left
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -56,7 +87,7 @@ public class ImplementedMessage implements Message {
 		if (!(obj instanceof ImplementedMessage))
 			return false;
 		ImplementedMessage other = (ImplementedMessage) obj;
-		return Objects.equals(receiver, other.receiver) && Objects.equals(sender, other.sender)
+		return Objects.equals(recipient, other.recipient) && Objects.equals(sender, other.sender)
 				&& timeLeft == other.timeLeft;
 	}
 

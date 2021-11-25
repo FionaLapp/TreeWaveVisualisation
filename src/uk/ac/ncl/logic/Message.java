@@ -5,7 +5,7 @@ package uk.ac.ncl.logic;
  * @author Fiona Lapp
  *
  */
-public interface Message extends Comparable<Message> {
+public interface Message {
 	/**
 	 * id of the node that sent the message
 	 * @return the sender id
@@ -22,7 +22,6 @@ public interface Message extends Comparable<Message> {
 	 */
 	public int getTimeLeft();
 	
-	public int compareTo(Message message);
 	/**
 	 * decrease the remaining transit time by 1. 
 	 * <p>This method should be called on every message at every time step of the algorithm.</p>

@@ -31,13 +31,7 @@ public class ImplementedMessage implements Message {
 		return timeLeft;
 	}
 
-	/**
-	 * This returns a positive number if this message has more time left than the message it is being compared to.
-	 */
-	@Override
-	public int compareTo(Message message) {
-		return this.timeLeft-message.getTimeLeft();
-	}
+	
 	@Override
 	public void decreaseTimeLeft() { //by one
 		if (timeLeft>0)

@@ -134,7 +134,7 @@ public class ImplementedNode implements Node {
 	 * check if the node has a silent neighbour, if so, set the "hasSilentNeighbour" field and the "silentNeighbour" field
 	 */
 	private void checkForSilentNeighbour() {
-	
+		if (!hasSilentNeighbour) {
 		int possibleSilentNeighbour=-1;//none
 		for (int neighbour=0; neighbour<numberOfNeighbours; neighbour++) {
 			
@@ -147,7 +147,7 @@ public class ImplementedNode implements Node {
 				}
 			}
 		}
-		if (possibleSilentNeighbour!=-1) {
+		
 		silentNeighbour=possibleSilentNeighbour;
 		hasSilentNeighbour=true;}
 	}

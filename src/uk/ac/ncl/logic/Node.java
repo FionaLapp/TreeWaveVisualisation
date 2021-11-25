@@ -2,6 +2,13 @@ package uk.ac.ncl.logic;
 
 import java.util.LinkedList;
 
+
+/**
+ * An interface for node objects. These have neighbours with whom they interchange messages, a buffer to store messages functionality associated with this.
+ * @author Fiona Lapp
+ *
+ */
+
 public interface Node {
 	/**
 	 * @return neighbours - an array of the id numbers of the neighbours of this node
